@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Hamoud Alshammari, aerospace engineer: orbit determination, estimation, satellite navigation and satellite geodesy." />
+    content="Hamoud Alshammari, aerospace engineer working across astrodynamics, spacecraft estimation and Earth observation." />
   <title>Hamoud Alshammari | Aerospace Engineer</title>
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='10' fill='%231d4ed8'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='12' fill='none' stroke='%230f172a' stroke-width='4' transform='rotate(-25 32 32)'/%3E%3C/svg%3E" />
@@ -375,6 +375,24 @@
       color: var(--muted);
       font-size: 0.93rem;
       line-height: 1.55;
+    }
+
+    .interest {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interest p.evidence {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--faint);
+    }
+
+    .interest p:not(.k):not(.evidence) {
+      margin-bottom: 14px;
     }
 
     /* ---------- Timeline ---------- */
@@ -1036,8 +1054,9 @@
       <div>
         <p class="eyebrow">Aerospace Engineer · Riyadh</p>
         <h1>Hamoud Alshammari</h1>
-        <p class="lead">I work on how we track, navigate and measure from space: orbit determination, estimation,
-          satellite navigation and satellite geodesy, with a focus on knowing how far to trust the numbers.</p>
+        <p class="lead">I work across astrodynamics, spacecraft estimation and Earth observation, from orbit
+          determination and attitude control to SAR, LiDAR and gravity fields, building tools that are tested well
+          enough to trust.</p>
         <div class="btn-row">
           <a href="#projects" class="btn btn-primary">View work</a>
           <a href="assets/Hamoud_Alshammari.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV</a>
@@ -1100,33 +1119,43 @@
         </div>
         <div class="about-text reveal">
           <h2 style="font-size:clamp(1.7rem,3vw,2.2rem);letter-spacing:-0.015em;line-height:1.2;margin-bottom:22px;">
-            Every number we get from space comes with an uncertainty. I like working out how much to trust it.</h2>
+            I turn measurements from space into knowledge we can trust: where a spacecraft is, where it's pointing, and
+            what it sees.</h2>
           <p>I am an aerospace engineer based in Riyadh. I hold an M.S.E. in Aerospace Engineering from The University
-            of Texas at Austin, where I focused on orbit determination, satellite geodesy and estimation, and then
-            worked at UT's Center for Space Research on lunar geodesy and reference frames. Since 2025 I have worked in
-            industry on satellite communications, navigation and Earth-observation systems.</p>
-          <p>An orbit, a gravity field, a reference frame, a position fix: each comes with a stated uncertainty. I'm
-            interested in how model and measurement errors feed into that number, and in building tools that are tested
-            well enough to answer the question honestly.</p>
+            of Texas at Austin and worked at UT's Center for Space Research on lunar geodesy and reference frames. Since
+            2025 I have worked in industry on satellite communications, navigation and Earth-observation systems.</p>
+          <p>My work spans three connected areas of space engineering. What ties them together is the same habit: model
+            the system, estimate it from real or simulated measurements, then test the result hard enough to know how far
+            it can be trusted, whether that means validating against a reference implementation, running a Monte Carlo,
+            or checking a covariance against the actual error.</p>
 
           <div class="interests">
             <div class="interest">
-              <p class="k">01</p>
-              <h3>Uncertainty realism in orbit determination</h3>
-              <p>Covariance that can be trusted when force-model errors such as gravity and drag dominate and errors stop
-                being Gaussian.</p>
+              <p class="k">01 · Astrodynamics</p>
+              <h3>Orbit determination, design &amp; control</h3>
+              <p>Estimating and predicting orbits, designing them for a mission, and keeping them there: perturbation
+                theory, propagation, maneuver planning and maneuver detection.</p>
+              <p class="evidence"><a href="#proj-jahsat">EKF/UKF orbit determination</a> · <a
+                  href="#proj-terrasarx">TerraSAR-X orbit control</a> · <a href="#software">SGP4 &amp; propagators</a> ·
+                <a href="#courses">celestial mechanics</a></p>
             </div>
             <div class="interest">
-              <p class="k">02</p>
-              <h3>Error propagation into downstream products</h3>
-              <p>How orbit, clock, frame and gravity-model errors reach geodetic products and user-level navigation,
-                including in cislunar space.</p>
-            </div>
-            <div class="interest">
-              <p class="k">03</p>
-              <h3>Detecting when the model is wrong</h3>
-              <p>Integrity monitoring and fault detection inside estimation pipelines, so they flag their own failures.
+              <p class="k">02 · Estimation &amp; autonomy</p>
+              <h3>Navigation, attitude &amp; spacecraft estimation</h3>
+              <p>Knowing a spacecraft's position and attitude on board: Kalman and particle filters, multiple-model
+                methods, GNSS navigation and integrity, and attitude determination and control.</p>
+              <p class="evidence"><a href="#proj-mekf">ADCS with MEKF</a> · <a href="#software">36-filter Julia
+                  toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a href="#courses">optimal control</a>
               </p>
+            </div>
+            <div class="interest">
+              <p class="k">03 · Earth observation</p>
+              <h3>Remote sensing &amp; satellite geodesy</h3>
+              <p>Turning satellite data into information about the Earth and Moon: SAR imaging, LiDAR, machine learning
+                on imagery, gravity fields and reference frames.</p>
+              <p class="evidence"><a href="#proj-sar">SAR back-projection</a> · <a href="#proj-ml">tree-crown
+                  detection</a> · <a href="#courses">LiDAR</a> · <a href="#courses">gravity-field modeling</a> · <a
+                  href="#experience">lunar frames at CSR</a></p>
             </div>
           </div>
         </div>
@@ -1689,8 +1718,8 @@
       <div>
         <p class="eyebrow">Contact</p>
         <h2>Let's talk space.</h2>
-        <p>Always happy to talk orbit determination, satellite geodesy, space navigation or open-source space software.
-          Email is the best way to reach me.</p>
+        <p>Always happy to talk astrodynamics, spacecraft navigation and control, Earth observation, or open-source space
+          software. Email is the best way to reach me.</p>
       </div>
       <div class="c-links">
         <a class="c-link" href="mailto:alshammarih3351@gmail.com">
@@ -1731,7 +1760,7 @@
   <footer>
     <div class="wrap">
       <span>© 2026 Hamoud Alshammari</span>
-      <span>Orbit determination · estimation · navigation · geodesy</span>
+      <span>Astrodynamics · estimation &amp; autonomy · Earth observation</span>
     </div>
   </footer>
 

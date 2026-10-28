@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Hamoud Alshammari - Aerospace Engineer in Orbital Mechanics, Navigation, and Remote Sensing. Actively pursuing PhD opportunities." />
+    content="Hamoud Alshammari - aerospace engineer working on estimation and uncertainty for space systems: orbit determination, satellite geodesy, and navigation. Applying to PhD programs for Fall 2027." />
   <title>Hamoud Alshammari – PhD Portfolio</title>
   <style>
     :root {
@@ -499,6 +499,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#courses">Courses</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#software">Software</a></li>
         <li><a href="#undergrad">Foundations</a></li>
         <li><a href="#outside">Outside</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -510,10 +511,10 @@
   <section id="home" class="hero">
     <div class="container">
       <h1>Hamoud Alshammari</h1>
-      <p class="tagline">Aerospace Engineer — Orbital Mechanics, Navigation & Remote Sensing — PhD Portfolio</p>
+      <p class="tagline">Estimation and uncertainty for space systems — orbit determination · satellite geodesy · navigation</p>
       <div class="cta-buttons">
         <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Download Resume</a>
+        <a href="assets/Hamoud_Alshammari.pdf" class="btn btn-outline">Download CV</a>
       </div>
     </div>
   </section>
@@ -524,45 +525,48 @@
       <h2>About Me</h2>
       <div class="about-content">
         <p>
-          I completed a coursework-based M.S. in Aerospace Engineering at The University of Texas at Austin, where
-          I worked closely with faculty in orbit mechanics, geodesy, and remote sensing. My graduate training fostered
-          a strong foundation in estimation theory, reference frames, and spacecraft dynamics, and it shaped my
-          commitment to advancing precise and reliable space operations through research in orbit determination,
-          dynamical systems, and control.
+          I am an aerospace engineer in Riyadh, applying to PhD programs for Fall 2027. I hold an M.S.E. in Aerospace
+          Engineering from The University of Texas at Austin (2024), where I focused on orbit determination, satellite
+          geodesy, and estimation, and then worked at UT’s Center for Space Research on lunar geodesy and reference
+          frames. Since 2025 I have worked in industry on satellite communications, navigation, and Earth-observation
+          systems.
         </p>
         <p>
-          My research interests span the intersection of orbital dynamics, GNSS, and modern sensing technologies: 
-          orbit determination, spacecraft state estimation (e.g., MEKF), resilient PNT, radar and LiDAR systems, 
-          and geodetic reference frames. I’m pursuing a PhD to advance robust positioning, navigation, 
-          and timing solutions by connecting rigorous orbital dynamics with innovative sensing and data-driven methods.
+          Most of what I have worked on comes back to the same problem. Every product we derive from satellites (an
+          orbit, a gravity field, a reference frame, a position fix) comes with a stated uncertainty, and I want to
+          understand how model and measurement errors feed into that number and when it can be trusted. In a PhD I
+          want to work on:
         </p>
+        <ul style="margin: 0 0 1rem 1.25rem; line-height: 1.7; text-align: left;">
+          <li><strong>Uncertainty realism in precise orbit determination:</strong> covariance that can be trusted when
+            force-model errors such as gravity and drag dominate and errors stop being Gaussian.</li>
+          <li><strong>Error propagation into downstream products:</strong> how orbit, clock, frame, and gravity-model
+            errors reach geodetic products and user-level navigation, including in cislunar space.</li>
+          <li><strong>Detecting when the model is wrong:</strong> integrity monitoring and fault detection inside
+            estimation pipelines, so they flag their own failures.</li>
+        </ul>
         <div class="current-role" aria-label="Recent role at UT Austin CSR">
-          <h3>Recent Role</h3>
+          <h3>Research Experience</h3>
           <p>
-            <strong>Research Engineering/Scientist Professional, Center for Space Research/UT- Austin</strong>
+            <strong>Research Engineering/Scientist Professional, Center for Space Research, UT Austin</strong> (Jan–Apr 2025)
             <br>
-            Contributed to interagency efforts on <em>lunar reference-frame alignment</em> and early cislunar navigation
-            topics.
+            <strong>Graduate Research Assistant, Center for Space Research, UT Austin</strong> (Feb–Dec 2024)
             <br>
-            Applied geodetic principles to evaluate and synthesize multi-source spatial datasets and authored technical
-            notes.
-            (Select project details intentionally limited for confidentiality.)
-          </p>
-          <p>
-            <strong>Graduate Research Assistant, Center for Space Research/UT- Austin</strong>
-            <br>
-            Supported research in <em>lunar geodesy</em> and reference-system development; contributed to internal
-            documentation and reports.
+            Lunar geodesy and reference-frame research in a collaboration between CSR and CU Boulder’s Colorado Center
+            for Astrodynamics Research. I reviewed the literature on lunar frame realizations and frame-tie strategies,
+            evaluated how existing multi-source data products could support a consistent lunar frame, and co-authored
+            internal technical documentation of the team’s assumptions. (Project details are limited because the work
+            was internal.)
           </p>
         </div>
         <div class="current-role">
           <h3>Current Position</h3>
           <p>
-            <strong>Aerospace Technology Engineer at Neo Space Group</strong><br />
-            At this early-stage startup, my role centers on Research and Development (R&D) as well as technical
-            due diligence. I work directly with the CTO to evaluate companies, validate their claims using available
-            tools, and when necessary, develop my own methods. My work spans satellite communications (SatCom),
-            Positioning, Navigation and Timing (PNT), Earth Observation (EO), and NB-IoT applications.
+            <strong>Aerospace Technology Engineer, Neo Space Group</strong> (May 2025–present)<br />
+            R&amp;D and technical due diligence across satellite communications, positioning/navigation/timing, Earth
+            observation, and NB-IoT. Much of the work is checking whether a quoted performance number still holds
+            once its assumptions are written down, through link budgets, coverage models, and constellation-geometry
+            (dilution-of-precision) studies.
           </p>
         </div>
       </div>
@@ -878,9 +882,47 @@
   <!-- PROJECTS (expanded with images) -->
   <section id="projects">
     <div class="container">
-      <h2>Selected Research Projects (Detailed)</h2>
+      <h2>Selected Graduate Projects</h2>
+      <p style="text-align:center; color: var(--text-light); max-width: 820px; margin: -0.5rem auto 1.5rem;">
+        Course projects from my M.S. at UT Austin, ordered by how directly they relate to my research interests.
+      </p>
 
       <div class="projects-grid">
+        <!-- OD: JahSat-1 -->
+        <div class="project-card" id="proj-jahsat">
+          <div class="project-image">Orbit Determination</div>
+          <div class="project-content">
+            <h3>JahSat-1: EKF/UKF Orbit Determination</h3>
+            <p>
+              Estimated a satellite’s trajectory from simulated range and range-rate data at three stations (Kwajalein,
+              Diego Garcia, Arecibo). Built the filters in stages, from two-body dynamics with ideal measurements up to J2
+              and realistic station geometry, and tuned process noise with small Monte Carlo runs. Compared EKF and UKF
+              across scenario sweeps (range-only, range-rate-only, per-station) over six days plus a seventh-day
+              prediction, judging them by residuals and by whether the covariance matched the actual RIC error.
+            </p>
+            <div class="project-methods">
+              <h4>Methods & Tools</h4>
+              <div class="skills-list">
+                <span class="skill-tag">EKF/UKF</span>
+                <span class="skill-tag">Residuals</span>
+                <span class="skill-tag">RIC Errors</span>
+                <span class="skill-tag">Bias Estimation</span>
+              </div>
+            </div>
+            <div class="outcome"><strong>Outcome:</strong> Quantified filter performance by measurement mix and geometry. This project is
+              where my interest in covariance realism started.</div>
+            <div
+              style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; margin-top: 12px;">
+              <img class="clickable" alt="Prefit/postfit residuals" src="assets/CaseF6daysCUKF.png"
+                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
+              <img class="clickable" alt="UKF RIC error" src="assets/UKF1.jpg"
+                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
+              <img class="clickable" alt="UKF RIC error" src="assets/UKF2.jpg"
+                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
+            </div>
+          </div>
+        </div>
+
         <!-- TerraSAR-X Orbit Control -->
         <div class="project-card" id="proj-terrasarx">
           <div class="project-image">TerraSAR-X Control</div>
@@ -987,40 +1029,6 @@
           </div>
         </div>
 
-        <!-- OD: JahSat-1 -->
-        <div class="project-card" id="proj-jahsat">
-          <div class="project-image">Orbit Determination</div>
-          <div class="project-content">
-            <h3>JahSat-1: EKF/UKF Orbit Determination</h3>
-            <p>
-              Performed OD with range/range rate from three stations (Kwajalein, Diego Garcia, Arecibo). Compared EKF vs UKF
-              with residual analysis,
-              RIC error evaluation, and scenario sweeps (range-only, rrate-only, per-station) over six days; executed
-              7th-day prediction.
-            </p>
-            <div class="project-methods">
-              <h4>Methods & Tools</h4>
-              <div class="skills-list">
-                <span class="skill-tag">EKF/UKF</span>
-                <span class="skill-tag">Residuals</span>
-                <span class="skill-tag">RIC Errors</span>
-                <span class="skill-tag">Bias Estimation</span>
-              </div>
-            </div>
-            <div class="outcome"><strong>Outcome:</strong> Quantified filter performance by measurement mix & geometry;
-              informed optimal tracking strategy.</div>
-            <div
-              style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 10px; margin-top: 12px;">
-              <img class="clickable" alt="Prefit/postfit residuals" src="assets/CaseF6daysCUKF.png"
-                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
-              <img class="clickable" alt="UKF RIC error" src="assets/UKF1.jpg"
-                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
-              <img class="clickable" alt="UKF RIC error" src="assets/UKF2.jpg"
-                style="width:100%; height:180px; object-fit:cover; background:#e9eef3;">
-            </div>
-          </div>
-        </div>
-
         <!-- ML Detection (optional) -->
         <div class="project-card" id="proj-ml">
           <div class="project-image">EO Detection</div>
@@ -1050,6 +1058,54 @@
 
         <!-- Hidden anchor for future STM project page -->
         <div class="project-card" id="proj-stm" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Software -->
+  <section id="software">
+    <div class="container">
+      <h2>Open-Source Software</h2>
+      <p style="text-align:center; color: var(--text-light); max-width: 820px; margin: -0.5rem auto 1.5rem;">
+        Tools I have written on my own time to test ideas in orbit propagation, estimation, and satellite navigation.
+        Full list on <a href="https://github.com/OrbitAR7" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+      <div class="courses-grid">
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/constellation-dop-analyzer" target="_blank" rel="noopener noreferrer">constellation-dop-analyzer</a></h3>
+          <p class="course-focus">Dilution of precision from real TLEs (GPS, Starlink) across latitude and elevation mask, for comparing LEO and MEO navigation geometry.</p>
+          <div class="skills-list"><span class="skill-tag">Python</span><span class="skill-tag">SGP4</span><span class="skill-tag">DOP</span><span class="skill-tag">LEO-PNT</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/gnss-integrity-raim" target="_blank" rel="noopener noreferrer">gnss-integrity-raim</a></h3>
+          <p class="course-focus">Receiver autonomous integrity monitoring: chi-square fault detection, fault exclusion, and protection levels.</p>
+          <div class="skills-list"><span class="skill-tag">Python</span><span class="skill-tag">Integrity</span><span class="skill-tag">FDE</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/EstimationToolkit.jl" target="_blank" rel="noopener noreferrer">EstimationToolkit.jl</a></h3>
+          <p class="course-focus">Kalman-family and particle filters in Julia, written to compare estimators on the same problems.</p>
+          <div class="skills-list"><span class="skill-tag">Julia</span><span class="skill-tag">EKF/UKF</span><span class="skill-tag">Particle Filter</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/gnss-pseudorange-solver" target="_blank" rel="noopener noreferrer">gnss-pseudorange-solver</a></h3>
+          <p class="course-focus">Header-only C++ single-point positioning: Gauss–Newton least squares with Sagnac correction and DOP, with tests against known truth (Monte Carlo error matches PDOP × σ).</p>
+          <div class="skills-list"><span class="skill-tag">C++</span><span class="skill-tag">GNSS</span><span class="skill-tag">Least Squares</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/gibbs-phenomenon-visualizer" target="_blank" rel="noopener noreferrer">gibbs-phenomenon-visualizer</a></h3>
+          <p class="course-focus">Truncation ringing when regional masks are expanded in spherical harmonics, a problem related to leakage in basin-scale gravity estimates.</p>
+          <div class="skills-list"><span class="skill-tag">Python</span><span class="skill-tag">Spherical Harmonics</span><span class="skill-tag">Geodesy</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/orbit-propagator-cpp" target="_blank" rel="noopener noreferrer">orbit-propagator-cpp</a></h3>
+          <p class="course-focus">Header-only C++ two-body + J2 propagator (RK4), validated against analytic results: 0.2 m closure over 10 orbits; J2 nodal drift within 0.2% of theory.</p>
+          <div class="skills-list"><span class="skill-tag">C++</span><span class="skill-tag">J2</span><span class="skill-tag">RK4</span></div>
+        </div>
+        <div class="course-card">
+          <h3><a href="https://github.com/OrbitAR7/basilisk-link-budget" target="_blank" rel="noopener noreferrer">basilisk-link-budget</a></h3>
+          <p class="course-focus">Tests for Basilisk's ground-station and downlink modules against an independent analytic model (range and elevation agree to 1e-12), plus an RF link budget that shows where Basilisk's geometry-only access overstates data return.</p>
+          <div class="skills-list"><span class="skill-tag">Python</span><span class="skill-tag">Basilisk</span><span class="skill-tag">Link Budget</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1209,9 +1265,8 @@
       <h2>Contact</h2>
       <div class="contact-content">
         <p style="margin-bottom: 1.2rem; color: var(--text-light);">
-          Actively seeking PhD opportunities in aerospace engineering, 
-          with interests spanning orbital mechanics, GNSS/PNT, remote sensing, 
-          and estimation/control. Let's connect.
+          Applying to PhD programs for Fall 2027 in orbit determination, satellite geodesy, and space navigation.
+          I would be glad to hear from faculty and researchers working in these areas.
         </p>
         <div class="contact-info">
           <a href="mailto:alshammarih3351@gmail.com" class="contact-item">
@@ -1252,9 +1307,9 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 Hamoud Alshammari. All rights reserved.</p>
+      <p>&copy; 2026 Hamoud Alshammari. All rights reserved.</p>
       <p style="margin-top: 0.4rem; opacity: 0.85; font-size: 0.95rem;">
-        Aerospace Engineer | Space Systems Specialist | PhD Aspirant
+        Aerospace engineer · orbit determination · satellite geodesy · navigation
       </p>
     </div>
   </footer>
@@ -1265,7 +1320,7 @@
     <img id="lightbox-img" src="" alt="">
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     function toggleMobileNav() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.classList.toggle('active');

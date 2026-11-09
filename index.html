@@ -1290,21 +1290,24 @@
           <div>
             <p class="p-kicker">Radar remote sensing</p>
             <h3>SAR image reconstruction</h3>
-            <p>Implemented time-domain back-projection focusing from raw complex data, with range compression, azimuth
-              focusing and multi-looking, to produce high-resolution images that are clearly sharper than unfocused
-              methods.</p>
-            <div class="tags"><span class="tag">SAR</span><span class="tag">Back-projection</span><span class="tag">Signal
-                processing</span><span class="tag">Imaging</span></div>
-            <p class="outcome"><b>Outcome:</b> focused imagery of urban scenes with a visible resolution improvement over
-              the unfocused baseline.</p>
+            <p>Focused raw ALOS PALSAR L-band echoes over Austin, Texas, with time-domain back-projection. Starting from
+              about 8,400 pulses of 8-bit I/Q samples, I range-compressed each pulse with a Hamming-weighted matched
+              filter, then focused in azimuth and multi-looked a 14.5 km × 2.5 km strip.</p>
+            <div class="tags"><span class="tag">SAR</span><span class="tag">Back-projection</span><span class="tag">Matched
+                filtering</span><span class="tag">ALOS PALSAR</span></div>
+            <p class="outcome"><b>Outcome:</b> raw echoes with no visible structure became a sharp image in which the
+              river, the street grid and individual bright structures stand out.</p>
           </div>
           <div class="p-media">
-            <img class="zoom" loading="lazy" src="assets/thumbs/back_pro.jpg" data-full="assets/back_pro.png"
-              alt="Back-projection image">
-            <img class="zoom" loading="lazy" src="assets/thumbs/Data_2D.jpg" data-full="assets/Data_2D.jpg"
-              alt="Raw 2-D data">
-            <img class="zoom" loading="lazy" src="assets/thumbs/comepress.jpg" data-full="assets/comepress.png"
-              alt="Range compression">
+            <img class="zoom" loading="lazy" src="assets/thumbs/sar_focused.jpg"
+              data-full="assets/projects/sar_focused.jpg"
+              alt="Back-projection focused SAR image of Austin, Texas, from raw ALOS PALSAR L-band data.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/sar_pipeline.jpg"
+              data-full="assets/projects/sar_pipeline.jpg"
+              alt="Processing chain: raw echoes, then range compressed, then back-projection focused.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/sar_range_compressed.jpg"
+              data-full="assets/projects/sar_range_compressed.jpg"
+              alt="Range-compressed data (Hamming-weighted matched filter): each strong target traces a range-migration curve across the pulses.">
           </div>
         </article>
 

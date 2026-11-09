@@ -1205,22 +1205,30 @@
         <article class="project reveal" id="proj-jahsat">
           <div>
             <p class="p-kicker">Orbit determination</p>
-            <h3>JahSat-1: EKF/UKF orbit determination</h3>
-            <p>Estimated a satellite's trajectory from simulated range and range-rate data at three stations (Kwajalein,
-              Diego Garcia, Arecibo). Built the filters in stages, from two-body dynamics with ideal measurements up to J2
-              and realistic station geometry, and tuned process noise with small Monte Carlo runs. Compared EKF and UKF
-              across scenario sweeps (range-only, range-rate-only, per-station) over six days plus a seventh-day
-              prediction, judging them by residuals and by whether the covariance matched the actual RIC error.</p>
-            <div class="tags"><span class="tag">EKF / UKF</span><span class="tag">Residuals</span><span class="tag">RIC
-                errors</span><span class="tag">Bias estimation</span></div>
-            <p class="outcome"><b>Outcome:</b> quantified filter performance by measurement mix and geometry. This
-              project is where my interest in covariance realism started.</p>
+            <h3>JahSat-1: orbit determination and smoothing</h3>
+            <p>Estimated a satellite's trajectory from six days of simulated range and range-rate data at three stations
+              (Kwajalein, Diego Garcia, Arecibo), with a 20×20 EGM96 gravity field, Sun and Moon perturbations, box-wing
+              drag and solar radiation pressure. Compared EKF, UKF and batch least squares across data subsets
+              (range-only, range-rate-only, per-station), carried drag as a consider parameter, and applied a
+              fixed-interval unscented smoother, judging each solution by its residuals and by whether its covariance
+              matched the actual RIC error.</p>
+            <div class="tags"><span class="tag">EKF / UKF</span><span class="tag">Unscented smoother</span><span
+                class="tag">Batch least squares</span><span class="tag">Maneuver detection</span></div>
+            <p class="outcome"><b>Outcome:</b> the smoother cut epoch position uncertainty from 7.9 m to 29 cm; drag
+              estimates exposed an unannounced maneuver (|ΔV| ≈ 0.4 mm/s) in the day-3/4 data gap; and residuals
+              revealed unmodelled per-station range-rate biases. This project is where my interest in covariance
+              realism started.</p>
           </div>
           <div class="p-media">
-            <img class="zoom" loading="lazy" src="assets/thumbs/CaseF6daysCUKF.jpg" data-full="assets/CaseF6daysCUKF.png"
-              alt="Prefit and postfit residuals">
-            <img class="zoom" loading="lazy" src="assets/thumbs/UKF1.jpg" data-full="assets/UKF1.jpg" alt="UKF RIC error">
-            <img class="zoom" loading="lazy" src="assets/thumbs/UKF2.jpg" data-full="assets/UKF2.jpg" alt="UKF RIC error">
+            <img class="zoom" loading="lazy" src="assets/thumbs/od_ukf_smoother.jpg"
+              data-full="assets/projects/od_ukf_smoother.png"
+              alt="Smoothing the JahSat-1 orbit: the unscented smoother cuts epoch position uncertainty from 7.9 m to 29 cm.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/od_drag_maneuver.jpg"
+              data-full="assets/projects/od_drag_maneuver.png"
+              alt="Day-by-day drag estimates jump 13% at the day-3/4 data gap in every data subset, exposing an unannounced maneuver.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/od_ric_ellipses.jpg"
+              data-full="assets/projects/od_ric_ellipses.png"
+              alt="Predicted position at the maneuver epoch for each data subset: radial and cross-track agree to about 3 m; in-track is where they differ.">
           </div>
         </article>
 
@@ -1228,20 +1236,25 @@
           <div>
             <p class="p-kicker">Orbit design &amp; control</p>
             <h3>Replicating TerraSAR-X orbit control</h3>
-            <p>Recreated TerraSAR-X's 11-day sun-synchronous repeat orbit and control strategy. Built truth and reference
-              orbits with J2 and drag, designed ΔV maneuvers to stay within a 250 m tolerance tube, and explored maneuver
-              cadence against error growth and propellant.</p>
+            <p>Recreated TerraSAR-X's 11-day sun-synchronous repeat orbit (167 revolutions per cycle, with the reference
+              closed by differential correction) and its control strategy. Propagated the orbit with J2 and atmospheric
+              drag, sized ΔV burns to keep the ground track within a 250 m tube, and compared burn cadence against an
+              analytic model across the solar cycle.</p>
             <div class="tags"><span class="tag">Orbit propagation</span><span class="tag">Sun-sync / repeat</span><span
-                class="tag">Control budget</span><span class="tag">MATLAB / Simulink</span></div>
-            <p class="outcome"><b>Outcome:</b> demonstrated control feasibility under perturbations; outlined extensions
-              for SRP and higher-fidelity drag.</p>
+                class="tag">Differential correction</span><span class="tag">Control budget</span></div>
+            <p class="outcome"><b>Outcome:</b> 13 burns in 66 days (3.1 m/s per year) kept the orbit inside the tube
+              99.7% of the time; without control, the ground track leaves the tube after 1.9 days.</p>
           </div>
           <div class="p-media">
-            <img class="zoom" loading="lazy" src="assets/thumbs/terrasarx_tube.jpg" data-full="assets/terrasarx_tube.png"
-              alt="Tolerance tube">
-            <img class="zoom" loading="lazy" src="assets/thumbs/normal_radial_error.jpg"
-              data-full="assets/normal_radial_error.png" alt="Normal and radial error">
-            <img class="zoom" loading="lazy" src="assets/thumbs/Sat.jpg" data-full="assets/Sat.png" alt="Satellite orbit">
+            <img class="zoom" loading="lazy" src="assets/thumbs/tsx_tube_control.jpg"
+              data-full="assets/projects/tsx_tube_control.png"
+              alt="Keeping TerraSAR-X inside a 250 m tube: 13 burns in 66 days, inside the tube 99.7% of the time.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/tsx_before_after.jpg"
+              data-full="assets/projects/tsx_before_after.png"
+              alt="Without control the ground track drifts out of the 250 m tube after 1.9 days; a small burn every ~5 days keeps it inside.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/tsx_space_error.jpg"
+              data-full="assets/projects/tsx_space_error.png"
+              alt="Error from the reference orbit at each equator crossing: cross-track driven by drag, radial by eccentricity.">
           </div>
         </article>
 
@@ -1249,21 +1262,27 @@
           <div>
             <p class="p-kicker">Attitude determination &amp; control</p>
             <h3>Closed-loop ADCS with an MEKF</h3>
-            <p>Built an ADCS simulation: rigid-body attitude dynamics with environmental torques, an Earth-pointing PD
-              controller, actuators with error models, a multi-sensor attitude suite, and a six-state multiplicative EKF
-              for attitude and gyro-bias estimation. Robustness evaluated with a 100-run Monte Carlo.</p>
-            <div class="tags"><span class="tag">MEKF</span><span class="tag">PD control</span><span class="tag">Sensor
-                fusion</span><span class="tag">Monte Carlo</span></div>
-            <p class="outcome"><b>Outcome:</b> bias convergence and pointing accuracy across disturbance cases;
-              sensitivity to sensor noise quantified.</p>
+            <p>Built a closed-loop ADCS simulation for an Earth-pointing satellite: rigid-body dynamics with
+              gravity-gradient, magnetic and drag torques; phase-plane thruster (RCS) control with a ±0.5° dead band; and
+              a six-state multiplicative EKF that fuses gyro, horizon, sun and magnetometer measurements to estimate
+              attitude and gyro bias. Robustness evaluated with a 100-run Monte Carlo over sensor noise, gyro bias and
+              thruster error.</p>
+            <div class="tags"><span class="tag">MEKF</span><span class="tag">RCS phase-plane control</span><span
+                class="tag">Sensor fusion</span><span class="tag">Monte Carlo</span></div>
+            <p class="outcome"><b>Outcome:</b> after a ~100 s start-up transient, every Monte Carlo run stays inside the
+              0.5° dead band; the MEKF finds the gyro bias within about 200 s, and its predicted σ matches the actual
+              error spread over 100 runs, so its error bounds can be trusted.</p>
           </div>
           <div class="p-media">
-            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_pointing_error.jpg"
-              data-full="assets/mekf_pointing_error.png" alt="Attitude rate error vs attitude error">
-            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_bias.jpg" data-full="assets/mekf_bias.png"
-              alt="Gyro bias estimate">
-            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_AM.jpg" data-full="assets/mekf_AM.png"
-              alt="Angular momentum">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_monte_carlo.jpg"
+              data-full="assets/projects/mekf_monte_carlo.png"
+              alt="100 Monte Carlo runs: after a ~100 s start-up transient, every run stays within the 0.5° pointing dead band.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_gyro_bias.jpg"
+              data-full="assets/projects/mekf_gyro_bias.png"
+              alt="The six-state MEKF finds the unknown gyro bias within about 200 s, fusing horizon, sun and magnetometer measurements.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mekf_consistency.jpg"
+              data-full="assets/projects/mekf_consistency.png"
+              alt="Filter consistency: the actual error spread over 100 runs matches the MEKF's own predicted sigma.">
           </div>
         </article>
 

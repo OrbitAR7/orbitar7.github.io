@@ -571,6 +571,16 @@
       height: 220px;
     }
 
+    /* two wide figures, one above the other at their natural height */
+    .p-media.stack {
+      grid-template-columns: 1fr;
+    }
+
+    .p-media.stack img,
+    .p-media.stack img:first-child {
+      height: auto;
+    }
+
     img.zoom {
       cursor: zoom-in;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -735,6 +745,10 @@
       display: flex;
       align-items: baseline;
       gap: 12px;
+    }
+
+    .sub-head-first {
+      margin-top: 0;
     }
 
     .sub-head span {
@@ -1113,7 +1127,8 @@
               <p>Estimating and predicting orbits, designing them for a mission, and keeping them there: perturbation
                 theory, propagation, maneuver planning and maneuver detection.</p>
               <p class="evidence"><a href="#proj-jahsat">EKF/UKF orbit determination</a> · <a
-                  href="#proj-terrasarx">TerraSAR-X orbit control</a> · <a href="#software">SGP4 &amp; propagators</a> ·
+                  href="#proj-terrasarx">TerraSAR-X orbit control</a> · <a href="#proj-halo">lunar halo orbits &amp;
+                  Mars transfers</a> · <a href="#software">SGP4 &amp; propagators</a> ·
                 <a href="#courses">celestial mechanics</a></p>
             </div>
             <div class="interest">
@@ -1121,8 +1136,10 @@
               <h3>Navigation, attitude &amp; spacecraft estimation</h3>
               <p>Knowing a spacecraft's position and attitude on board: Kalman and particle filters, multiple-model
                 methods, GNSS navigation and integrity, and attitude determination and control.</p>
-              <p class="evidence"><a href="#proj-mekf">ADCS with MEKF</a> · <a href="#software">36-filter Julia
-                  toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a href="#courses">optimal control</a>
+              <p class="evidence"><a href="#proj-mixture">non-Gaussian orbit uncertainty</a> · <a
+                  href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-mekf">ADCS with MEKF</a> · <a
+                  href="#software">37-filter Julia toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a
+                  href="#courses">optimal control</a>
               </p>
             </div>
             <div class="interest">
@@ -1198,9 +1215,101 @@
           <p class="sec-num">03 · Projects</p>
           <div>
             <h2>Selected projects</h2>
-            <p>Graduate projects from UT Austin. Click any figure to enlarge it.</p>
+            <p>Recent independent work, then graduate projects from UT Austin. Click any figure to enlarge it.</p>
           </div>
         </div>
+
+        <h3 class="sub-head sub-head-first" id="recent">Recent work <span>independent · 2026</span></h3>
+
+        <article class="project reveal" id="proj-mixture">
+          <div>
+            <p class="p-kicker">Estimation · uncertainty propagation</p>
+            <h3>When one Gaussian is not enough: orbit uncertainty after a tracking gap</h3>
+            <p>Added an adaptive Gaussian mixture filter to my Julia estimation toolkit. It starts from a single
+              Gaussian and splits a component in three when the dynamics become too nonlinear across it (an entropy
+              criterion after DeMars, Bishop &amp; Jah), keeping the mean and covariance of the mixture exactly. I tested
+              it on a 700 km satellite left untracked for two revolutions (3-D, two-body + J2), scoring each filter
+              against 20,000 Monte Carlo samples, then through a radar pass in 200 trials. Writing the tests also
+              exposed a Gaussian sum filter that had never worked and a likelihood underflow in nine particle and
+              mixture filters; both are fixed.</p>
+            <div class="tags"><span class="tag">Gaussian mixtures</span><span class="tag">EKF / UKF</span><span
+                class="tag">KL divergence</span><span class="tag">Monte Carlo · NEES</span></div>
+            <p class="outcome"><b>Outcome:</b> after the gap the KL divergence from the true distribution is 2,700
+              nats for the EKF, 19 for the UKF and 2.5 for the mixture. Through the pass the mixture stays consistent
+              (92–97% of trials inside the 99% bound, against 8% for the EKF and 34–63% for the UKF) and is 3 to 9
+              times more accurate than the UKF. <a href="https://github.com/OrbitAR7/EstimationToolkit.jl"
+                target="_blank" rel="noopener noreferrer">Code →</a></p>
+          </div>
+          <div class="p-media">
+            <img class="zoom" loading="lazy" src="assets/thumbs/gm_leo_cloud.jpg"
+              data-full="assets/projects/gm_leo_cloud.png"
+              alt="After two revolutions without tracking the uncertainty is a curved band several hundred km long; the EKF and UKF ellipses do not follow it, the 49 mixture components do.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/gm_leo_kl.jpg"
+              data-full="assets/projects/gm_leo_kl.png"
+              alt="KL divergence from the true distribution during the gap: thousands of nats for the EKF, tens for the UKF, a few for the mixture.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/gm_leo_tracking.jpg"
+              data-full="assets/projects/gm_leo_tracking.png"
+              alt="Radar pass after the gap: the mixture's NEES sits at the chi-square median while the EKF's is near 100,000; the mixture's position error falls below 300 m.">
+          </div>
+        </article>
+
+        <article class="project reveal" id="proj-halo">
+          <div>
+            <p class="p-kicker">Astrodynamics · cislunar &amp; interplanetary</p>
+            <h3>Lunar halo orbits and Mars launch windows from first principles</h3>
+            <p>Rebuilt my Julia orbital mechanics package around the circular restricted three-body problem: Lagrange
+              points, a differential corrector for periodic orbits and pseudo-arclength continuation. From the
+              Earth–Moon mass ratio alone it finds where the L2 halo family branches off the planar Lyapunov orbits and
+              follows it down to the near-rectilinear halo orbits (NRHOs), including the 9:2 resonant NRHO chosen for
+              the lunar Gateway. The same package maps Earth–Mars launch energy over departure and arrival dates.
+              Testing against textbook examples also exposed errors in my original Lambert solver and J2 propagation,
+              now fixed.</p>
+            <div class="tags"><span class="tag">CR3BP</span><span class="tag">Halo orbits / NRHO</span><span
+                class="tag">Continuation</span><span class="tag">Lambert</span></div>
+            <p class="outcome"><b>Outcome:</b> the 9:2 NRHO comes out with a 6.562-day period and a 3,249 km perilune,
+              its initial state within 1.5 × 10⁻⁵ of the published one; the corrector reproduces Howell's 1984 halo
+              orbit to six digits; and the 2020 Earth–Mars minimum falls in late July 2020, when Hope, Tianwen-1 and
+              Perseverance launched. 516 tests. <a href="https://github.com/OrbitAR7/orbital-mechanics-jl"
+                target="_blank" rel="noopener noreferrer">Code →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/cr3bp_halo_family.jpg"
+              data-full="assets/projects/cr3bp_halo_family.png"
+              alt="The Earth–Moon L2 southern halo family from its bifurcation down to the NRHOs, with the 9:2 NRHO highlighted; stability index and period along the family.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mars_porkchop.jpg"
+              data-full="assets/projects/mars_porkchop.png"
+              alt="Earth–Mars launch energy for the 2020 and 2026 opportunities; the three 2020 missions sit in the low-energy valley.">
+          </div>
+        </article>
+
+        <article class="project reveal" id="proj-nrho">
+          <div>
+            <p class="p-kicker">Navigation · cislunar</p>
+            <h3>Navigating the Gateway's halo orbit: where the EKF is right</h3>
+            <p>Joined the two packages: an EKF, a UKF and the adaptive mixture tracking a spacecraft on the 9:2 NRHO
+              from one ground station, with the orbit and its state transition matrix from the astrodynamics package. A
+              three-revolution coast scored against Monte Carlo, then 100 tracking trials with a 3.5-day station outage
+              across a perilune.</p>
+            <div class="tags"><span class="tag">NRHO</span><span class="tag">EKF / UKF / mixture</span><span
+                class="tag">Covariance realism</span></div>
+            <p class="outcome"><b>Outcome:</b> the opposite of the low-orbit result. Away from perilune the EKF's
+              density is exact even after three revolutions, while the UKF and the mixture drift from the truth and do
+              not recover; at perilune the EKF is badly wrong for a few hours, then right again. The mixture's split
+              criterion cannot tell a bend that undoes itself from one that does not, a limitation the write-up spells
+              out. <a href="https://github.com/OrbitAR7/EstimationToolkit.jl#where-a-gaussian-fails-on-a-lunar-halo-orbit"
+                target="_blank" rel="noopener noreferrer">Write-up →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/nrho_coast_kl.jpg"
+              data-full="assets/projects/nrho_coast_kl.png"
+              alt="Three revolutions of the NRHO without tracking: the EKF's KL divergence spikes at each perilune and returns to zero; the UKF's and the mixture's step up and stay up.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/nrho_tracking.jpg"
+              data-full="assets/projects/nrho_tracking.png"
+              alt="100 tracking trials with a station outage across perilune: the EKF's NEES briefly exceeds the others at perilune; after tracking resumes the UKF is less accurate for a day.">
+          </div>
+        </article>
+
+        <h3 class="sub-head" id="graduate">Graduate projects <span>UT Austin</span></h3>
 
         <article class="project reveal" id="proj-jahsat">
           <div>
@@ -1378,17 +1487,41 @@
           </a>
         </div>
 
-        <p class="repo-group">Estimation &amp; astrodynamics</p>
+        <p class="repo-group">Estimation &amp; attitude</p>
         <div class="repo-grid">
           <a class="repo reveal" href="https://github.com/OrbitAR7/EstimationToolkit.jl" target="_blank"
             rel="noopener noreferrer">
             <div class="repo-top">
               <h3>EstimationToolkit.jl</h3><span class="lang"><i style="background:#a270ba"></i>Julia</span>
             </div>
-            <p>36 estimation filters behind one interface (sigma-point, IMM/GPB multiple-model, particle flow, information
-              form), 568 tests, and a LEO maneuver-detection example comparing IMM, GPB2 and single-model EKFs.</p>
+            <p>37 estimation filters behind one interface (sigma-point, IMM/GPB multiple-model, particle flow, adaptive
+              Gaussian mixture), 869 tests, and orbit examples on maneuver detection, non-Gaussian uncertainty and
+              navigation on a lunar halo orbit.</p>
             <div class="tags"><span class="tag plain">Kalman</span><span class="tag plain">particle filters</span><span
-                class="tag plain">multiple-model</span></div>
+                class="tag plain">Gaussian mixtures</span></div>
+          </a>
+          <a class="repo reveal" href="https://github.com/OrbitAR7/attitude-triad-quest-mekf" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>attitude-triad-quest-mekf</h3><span class="lang"><i style="background:#e16737"></i>MATLAB</span>
+            </div>
+            <p>Attitude determination compared three ways: TRIAD, the SVD solution of Wahba's problem, and a
+              multiplicative EKF with gyro-bias estimation.</p>
+            <div class="tags"><span class="tag plain">attitude</span><span class="tag plain">MEKF</span></div>
+          </a>
+        </div>
+
+        <p class="repo-group">Astrodynamics</p>
+        <div class="repo-grid">
+          <a class="repo reveal" href="https://github.com/OrbitAR7/orbital-mechanics-jl" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>orbital-mechanics-jl</h3><span class="lang"><i style="background:#a270ba"></i>Julia</span>
+            </div>
+            <p>Three-body dynamics: Lagrange points, halo-orbit correction and continuation down to the 9:2 NRHO, with
+              Lambert transfers and Earth–Mars launch-energy maps. 516 tests against textbook and published values.</p>
+            <div class="tags"><span class="tag plain">CR3BP</span><span class="tag plain">halo orbits</span><span
+                class="tag plain">Lambert</span></div>
           </a>
           <a class="repo reveal" href="https://github.com/OrbitAR7/tle-sgp4-cpp" target="_blank"
             rel="noopener noreferrer">
@@ -1408,20 +1541,10 @@
               orbits and J2 nodal drift within 0.2% of theory.</p>
             <div class="tags"><span class="tag plain">J2</span><span class="tag plain">RK4</span></div>
           </a>
-
         </div>
 
-        <p class="repo-group">Attitude, simulation &amp; geodesy</p>
+        <p class="repo-group">Simulation &amp; geodesy</p>
         <div class="repo-grid">
-          <a class="repo reveal" href="https://github.com/OrbitAR7/attitude-triad-quest-mekf" target="_blank"
-            rel="noopener noreferrer">
-            <div class="repo-top">
-              <h3>attitude-triad-quest-mekf</h3><span class="lang"><i style="background:#e16737"></i>MATLAB</span>
-            </div>
-            <p>Attitude determination compared three ways: TRIAD, the SVD solution of Wahba's problem, and a
-              multiplicative EKF with gyro-bias estimation.</p>
-            <div class="tags"><span class="tag plain">attitude</span><span class="tag plain">MEKF</span></div>
-          </a>
           <a class="repo reveal" href="https://github.com/OrbitAR7/basilisk-link-budget" target="_blank"
             rel="noopener noreferrer">
             <div class="repo-top">

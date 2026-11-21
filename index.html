@@ -1137,7 +1137,8 @@
               <p>Knowing a spacecraft's position and attitude on board: Kalman and particle filters, multiple-model
                 methods, GNSS navigation and integrity, and attitude determination and control.</p>
               <p class="evidence"><a href="#proj-mixture">non-Gaussian orbit uncertainty</a> · <a
-                  href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-mekf">ADCS with MEKF</a> · <a
+                  href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-mars">Mars density
+                  estimation</a> · <a href="#proj-mekf">ADCS with MEKF</a> · <a
                   href="#software">37-filter Julia toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a
                   href="#courses">optimal control</a>
               </p>
@@ -1306,6 +1307,35 @@
             <img class="zoom" loading="lazy" src="assets/thumbs/nrho_tracking.jpg"
               data-full="assets/projects/nrho_tracking.png"
               alt="100 tracking trials with a station outage across perilune: the EKF's NEES briefly exceeds the others at perilune; after tracking resumes the UKF is less accurate for a day.">
+          </div>
+        </article>
+
+        <article class="project reveal" id="proj-mars">
+          <div>
+            <p class="p-kicker">Estimation · Mars entry &amp; aerobraking</p>
+            <h3>Estimating the Martian atmosphere from on board</h3>
+            <p>Two Monte Carlo studies built on both of my Julia packages. In the first, an MSL-class vehicle enters
+              Mars and a filter estimates how far the real density is from the model. In the second, an Odyssey-class
+              spacecraft makes an aerobraking pass and an accelerometer-fed filter tries to predict the heat rate at
+              periapsis before it gets there. Both use simplified planar dynamics and synthetic density errors, not
+              Mars-GRAM or flight data.</p>
+            <div class="tags"><span class="tag">EKF / UKF</span><span class="tag">Process noise tuning</span><span
+                class="tag">Monte Carlo · NEES</span><span class="tag">Aerobraking</span></div>
+            <p class="outcome"><b>Outcome:</b> during entry the descent rate drops from 1.3 to 0.14 km/s, so process
+              noise that is constant in time makes the filter's NEES swing 36× over the descent; scaling it by altitude
+              instead cuts the swing to 5× at equal or better accuracy. In aerobraking, a filter that also estimates
+              the density slope reaches 10% heat-rate error 105 s before periapsis, against 64 s for a scalar filter.
+              With 15% density waves along the track that lead drops to a few seconds, within 2 to 3 points of the
+              Bayes-optimal predictor. <a href="https://github.com/OrbitAR7/mars-density-estimation"
+                target="_blank" rel="noopener noreferrer">Code →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mars_entry_consistency.jpg"
+              data-full="assets/projects/mars_entry_consistency.png"
+              alt="Mars entry, 200 runs: with process noise constant in time the EKF's NEES is far from 1 across the descent; with process noise scaled by altitude it stays close to 1, and its RMS error matches the matched-noise filter.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/mars_aerobraking_lead.jpg"
+              data-full="assets/projects/mars_aerobraking_lead.png"
+              alt="Aerobraking pass, 300 runs: RMS error of the predicted peak heat rate against time before periapsis for scalar and two-state filters, with and without density waves, next to the Bayes bound; and the lead time to 10% error against accelerometer noise.">
           </div>
         </article>
 
@@ -1508,6 +1538,16 @@
             <p>Attitude determination compared three ways: TRIAD, the SVD solution of Wahba's problem, and a
               multiplicative EKF with gyro-bias estimation.</p>
             <div class="tags"><span class="tag plain">attitude</span><span class="tag plain">MEKF</span></div>
+          </a>
+          <a class="repo reveal" href="https://github.com/OrbitAR7/mars-density-estimation" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>mars-density-estimation</h3><span class="lang"><i style="background:#a270ba"></i>Julia</span>
+            </div>
+            <p>Estimating Mars atmosphere density during entry and aerobraking: process-noise design for a consistent
+              filter, and how early a filter can predict the heat rate at periapsis.</p>
+            <div class="tags"><span class="tag plain">Mars</span><span class="tag plain">EKF / UKF</span><span
+                class="tag plain">aerobraking</span></div>
           </a>
         </div>
 

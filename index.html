@@ -1137,7 +1137,8 @@
               <p>Knowing a spacecraft's position and attitude on board: Kalman and particle filters, multiple-model
                 methods, GNSS navigation and integrity, and attitude determination and control.</p>
               <p class="evidence"><a href="#proj-mixture">non-Gaussian orbit uncertainty</a> · <a
-                  href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-mars">Mars density
+                  href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-lunar">lunar navigation
+                  constellation</a> · <a href="#proj-mars">Mars density
                   estimation</a> · <a href="#proj-mekf">ADCS with MEKF</a> · <a
                   href="#software">37-filter Julia toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a
                   href="#courses">optimal control</a>
@@ -1309,6 +1310,36 @@
             <img class="zoom" loading="lazy" src="assets/thumbs/nrho_tracking.jpg"
               data-full="assets/projects/nrho_tracking.png"
               alt="100 tracking trials with a station outage across perilune: the EKF's NEES briefly exceeds the others at perilune; after tracking resumes the UKF is less accurate for a day.">
+          </div>
+        </article>
+
+        <article class="project reveal" id="proj-lunar">
+          <div>
+            <p class="p-kicker">Navigation · lunar frames &amp; constellations</p>
+            <h3>A navigation constellation for the Moon: frames, frozen orbits and coverage</h3>
+            <p>A Python simulation of the layers under lunar navigation, starting from the reference frames I worked on
+              at CSR. It realizes the Moon's Mean Earth and Principal Axis frames, propagates navigation satellites in a
+              degree-3 lunar gravity field with Earth and Sun perturbations, and computes visibility, dilution of
+              precision and single-point position fixes for users anywhere on the surface. The frames and orbits are
+              checked against NAIF SPICE with the DE440 kernels. It models geometry, not signals: no clocks, terrain
+              or navigation filter yet.</p>
+            <div class="tags"><span class="tag">Lunar reference frames</span><span class="tag">Frozen orbits</span><span
+                class="tag">DOP</span><span class="tag">SPICE · DE440</span></div>
+            <p class="outcome"><b>Outcome:</b> the PA-to-ME rotation matches SPICE to 10⁻¹⁹ and gives the 875 m
+              surface offset NAIF quotes. The frozen-orbit design only freezes when inclination is measured from the
+              Earth–Moon orbit plane rather than the lunar equator: over 90 days the argument of periapsis drifts
+              −0.026°/day instead of +0.133°/day. Over 28 days, 12 satellites in south-pole frozen orbits give a median
+              PDOP of 2.2 at the pole and no service at the north pole, while 24 in circular orbits cover the whole
+              Moon (PDOP ≤ 6 for 99.5% of users and times) but are weaker at the poles. 32 tests.
+              <a href="https://github.com/OrbitAR7/lunar-gnss-sim" target="_blank" rel="noopener noreferrer">Code →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/lunar_south_pole.jpg"
+              data-full="assets/projects/lunar_south_pole.png"
+              alt="User at the lunar south pole over three days: the 12-satellite frozen-orbit constellation keeps 9 to 11 satellites in view and PDOP near 2; the 24-satellite circular one keeps 5 to 8 in view with PDOP spikes up to 20.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/lunar_frozen_orbit.jpg"
+              data-full="assets/projects/lunar_frozen_orbit.png"
+              alt="A 24-hour frozen orbit propagated for 90 days: with inclination measured from the Earth–Moon orbit plane, eccentricity, inclination and argument of periapsis stay bounded; measured from the lunar equator, inclination climbs from 55 to 62 degrees.">
           </div>
         </article>
 
@@ -1488,6 +1519,16 @@
 
         <p class="repo-group">Navigation &amp; GNSS</p>
         <div class="repo-grid">
+          <a class="repo reveal" href="https://github.com/OrbitAR7/lunar-gnss-sim" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>lunar-gnss-sim</h3><span class="lang"><i style="background:#3572A5"></i>Python</span>
+            </div>
+            <p>Lunar ME and PA frames checked against SPICE/DE440, frozen elliptical orbits, and south-pole versus
+              global navigation constellations with DOP and single-point fixes. 32 tests.</p>
+            <div class="tags"><span class="tag plain">lunar navigation</span><span class="tag plain">frames</span><span
+                class="tag plain">DOP</span></div>
+          </a>
           <a class="repo reveal" href="https://github.com/OrbitAR7/gnss-integrity-raim" target="_blank"
             rel="noopener noreferrer">
             <div class="repo-top">

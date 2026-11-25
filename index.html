@@ -699,6 +699,18 @@
       background: #fff;
     }
 
+    .c-thumbs.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .c-meta {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
     .c-body {
       padding: 18px 20px 20px;
       display: flex;
@@ -1197,7 +1209,7 @@
           <div class="t-item edu reveal">
             <span class="t-date">2023 – 2024</span>
             <h3>M.S.E. in Aerospace Engineering</h3>
-            <p class="t-org">The University of Texas at Austin · GPA 3.9/4.0</p>
+            <p class="t-org">The University of Texas at Austin</p>
             <p class="body">Orbit determination, satellite geodesy, estimation, attitude control, celestial mechanics
               and remote sensing. <a href="#courses">Coursework →</a></p>
           </div>
@@ -1515,7 +1527,7 @@
           <div>
             <p class="p-kicker">Earth observation · ML</p>
             <h3>EO object detection: tree crowns</h3>
-            <p>Benchmarked Faster R-CNN, RetinaNet and SSD for tree-crown detection, integrated DeepForest as a baseline,
+            <p>In a two-person team, benchmarked Faster R-CNN, RetinaNet and SSD for tree-crown detection, integrated DeepForest as a baseline,
               and prepared a dataset protocol for a fair comparison.</p>
             <div class="tags"><span class="tag">Detection</span><span class="tag">CNN</span><span
                 class="tag">PyTorch</span></div>
@@ -1697,46 +1709,13 @@
           <p class="sec-num">05 · Coursework</p>
           <div>
             <h2>Graduate coursework</h2>
-            <p>M.S.E. at UT Austin, with a figure or two from each course's work.</p>
+            <p>M.S.E. at UT Austin, 2023–2024, grouped by the three areas I work in. Figures are from my own
+              homework and projects.</p>
           </div>
         </div>
 
+        <h3 class="sub-head sub-head-first" id="courses-astro">Astrodynamics &amp; orbit design</h3>
         <div class="course-grid">
-          <div class="course reveal">
-            <div class="c-thumbs">
-              <img class="zoom" loading="lazy" src="assets/thumbs/UKF3.jpg" data-full="assets/UKF3.jpg" alt="UKF RIC error">
-              <img class="zoom" loading="lazy" src="assets/thumbs/EKF_1.jpg" data-full="assets/EKF_1.jpg" alt="EKF example">
-              <img class="zoom" loading="lazy" src="assets/thumbs/com_time.jpg" data-full="assets/com_time.jpg"
-                alt="Computation time">
-            </div>
-            <div class="c-body">
-              <h3>Methods of Orbit Determination</h3>
-              <p class="c-focus">Statistical estimation for trajectory determination.</p>
-              <p class="c-proj">JahSat-1 OD from range and range-rate at three stations; residuals and RIC error across
-                scenarios. <a href="#proj-jahsat">Project →</a></p>
-              <div class="tags"><span class="tag">EKF / UKF</span><span class="tag">Covariance</span></div>
-            </div>
-          </div>
-
-          <div class="course reveal">
-            <div class="c-thumbs">
-              <img class="zoom" loading="lazy" src="assets/thumbs/Geodesy.jpg" data-full="assets/Geodesy.jpg"
-                alt="Profiles at 80°E">
-              <img class="zoom" loading="lazy" src="assets/thumbs/GL_H.jpg" data-full="assets/GL_H.png"
-                alt="Spherical-harmonic representation">
-              <img class="zoom" loading="lazy" src="assets/thumbs/SH_60.jpg" data-full="assets/SH_60.png"
-                alt="Spherical-harmonic representation">
-            </div>
-            <div class="c-body">
-              <h3>Satellite Geodesy</h3>
-              <p class="c-focus">Gravity-field modeling, functionals and time-variable mass signals.</p>
-              <p class="c-proj">Degree-variance spectra for potential, geoid, gravity anomaly and ∂²g/∂r²; meridian
-                profiles at 80°E.</p>
-              <div class="tags"><span class="tag">Spherical harmonics</span><span class="tag">GRACE / GRACE-FO</span>
-              </div>
-            </div>
-          </div>
-
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/CM1_lagrangePoints.jpg"
@@ -1747,6 +1726,7 @@
                 alt="Zero-velocity curves">
             </div>
             <div class="c-body">
+              <p class="c-meta">ASE 388P.2 · Fall 2024</p>
               <h3>Celestial Mechanics I</h3>
               <p class="c-focus">N-body dynamics, perturbation theory, STMs and variational equations.</p>
               <p class="c-proj">Extended STM/variational analysis to third-body perturbations; applied Lagrange's
@@ -1754,7 +1734,22 @@
               <div class="tags"><span class="tag">STM</span><span class="tag">Perturbations</span></div>
             </div>
           </div>
-
+          <div class="course reveal">
+            <div class="c-thumbs two">
+              <img class="zoom" loading="lazy" src="assets/thumbs/oc_rendezvous.jpg" data-full="assets/oc_rendezvous.jpg"
+                alt="LQR rendezvous: position, velocity and control histories reaching the target with zero relative velocity at the final time.">
+              <img class="zoom" loading="lazy" src="assets/thumbs/oc_lqr_pendulum.jpg" data-full="assets/oc_lqr_pendulum.jpg"
+                alt="LQR stabilization of a linearized inverted pendulum on a cart: cart position and pendulum angle return to zero.">
+            </div>
+            <div class="c-body">
+              <p class="c-meta">ASE 381P.3 · Spring 2023</p>
+              <h3>Optimal Control Theory</h3>
+              <p class="c-focus">Parameter optimization, calculus of variations, Pontryagin's principle and LQR.</p>
+              <p class="c-proj">Solved finite-horizon LQR pursuit problems through the Riccati equation (interception and
+                rendezvous with terminal constraints) and stabilized a linearized inverted pendulum.</p>
+              <div class="tags"><span class="tag">LQR / Riccati</span><span class="tag">Calculus of variations</span></div>
+            </div>
+          </div>
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/LEO1.jpg" data-full="assets/LEO1.jpg"
@@ -1765,14 +1760,50 @@
                 alt="Rate of precession">
             </div>
             <div class="c-body">
+              <p class="c-meta">ASE 389 · Spring 2024</p>
               <h3>LEO Satellites for Earth Observation</h3>
               <p class="c-focus">Orbit design for remote sensing: repeat, sun-synchronous and frozen orbits.</p>
-              <p class="c-proj">TerraSAR-X orbit control around an 11-day repeat cycle; ΔV planning under J2 and drag. <a
-                  href="#proj-terrasarx">Project →</a></p>
+              <p class="c-proj">TerraSAR-X orbit control around an 11-day repeat cycle; ΔV planning under J2 and drag. <a href="#proj-terrasarx">Project →</a></p>
               <div class="tags"><span class="tag">Repeat orbits</span><span class="tag">Orbit control</span></div>
             </div>
           </div>
+        </div>
 
+        <h3 class="sub-head" id="courses-est">Estimation, navigation &amp; control</h3>
+        <div class="course-grid">
+          <div class="course reveal">
+            <div class="c-thumbs">
+              <img class="zoom" loading="lazy" src="assets/thumbs/UKF3.jpg" data-full="assets/UKF3.jpg" alt="UKF RIC error">
+              <img class="zoom" loading="lazy" src="assets/thumbs/EKF_1.jpg" data-full="assets/EKF_1.jpg" alt="EKF example">
+              <img class="zoom" loading="lazy" src="assets/thumbs/com_time.jpg" data-full="assets/com_time.jpg"
+                alt="Computation time">
+            </div>
+            <div class="c-body">
+              <p class="c-meta">ASE 389P.4 · Spring 2023</p>
+              <h3>Methods of Orbit Determination</h3>
+              <p class="c-focus">Statistical estimation for trajectory determination.</p>
+              <p class="c-proj">JahSat-1 OD from range and range-rate at three stations; residuals and RIC error across
+                scenarios. <a href="#proj-jahsat">Project →</a></p>
+              <div class="tags"><span class="tag">EKF / UKF</span><span class="tag">Covariance</span></div>
+            </div>
+          </div>
+          <div class="course reveal">
+            <div class="c-thumbs two">
+              <img class="zoom" loading="lazy" src="assets/thumbs/stoch_force.jpg" data-full="assets/stoch_force.jpg"
+                alt="Unmeasured random force: truth and the EKF, UKF and SLF estimates, which track it closely.">
+              <img class="zoom" loading="lazy" src="assets/thumbs/stoch_rmse.jpg" data-full="assets/stoch_rmse.jpg"
+                alt="Running position RMSE of the EKF, UKF and SLF over five seconds; the three filters perform almost identically.">
+            </div>
+            <div class="c-body">
+              <p class="c-meta">ME 384Q.7 · Spring 2024</p>
+              <h3>Stochastic Systems, Estimation &amp; Control</h3>
+              <p class="c-focus">Random processes, estimation and stochastic control.</p>
+              <p class="c-proj">Compared the EKF, UKF and statistically linearized filter on a cubic-stiffness
+                mass–spring–damper driven by a random force, from sparse position-only measurements and a
+                mismatched model. <a href="https://github.com/OrbitAR7/vibration-isolation-filters" target="_blank" rel="noopener noreferrer">Code →</a></p>
+              <div class="tags"><span class="tag">Kalman family</span><span class="tag">SLF</span></div>
+            </div>
+          </div>
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/sat_sys_1.jpg" data-full="assets/sat_sys_1.jpg"
@@ -1783,6 +1814,7 @@
                 alt="Reaction wheel speeds">
             </div>
             <div class="c-body">
+              <p class="c-meta">ASE 389P.8 · Spring 2023</p>
               <h3>Satellite Control Systems</h3>
               <p class="c-focus">Attitude dynamics, estimation and control.</p>
               <p class="c-proj">Closed-loop ADCS with an MEKF, Earth-pointing PD and sensor/actuator error models;
@@ -1790,7 +1822,28 @@
               <div class="tags"><span class="tag">MEKF</span><span class="tag">ADCS</span></div>
             </div>
           </div>
+        </div>
 
+        <h3 class="sub-head" id="courses-eo">Earth observation &amp; geodesy</h3>
+        <div class="course-grid">
+          <div class="course reveal">
+            <div class="c-thumbs">
+              <img class="zoom" loading="lazy" src="assets/thumbs/Geodesy.jpg" data-full="assets/Geodesy.jpg"
+                alt="Profiles at 80°E">
+              <img class="zoom" loading="lazy" src="assets/thumbs/GL_H.jpg" data-full="assets/GL_H.png"
+                alt="Spherical-harmonic representation">
+              <img class="zoom" loading="lazy" src="assets/thumbs/SH_60.jpg" data-full="assets/SH_60.png"
+                alt="Spherical-harmonic representation">
+            </div>
+            <div class="c-body">
+              <p class="c-meta">ASE 389P.2 · Fall 2023</p>
+              <h3>Satellite Geodesy</h3>
+              <p class="c-focus">Gravity-field modeling, functionals and time-variable mass signals.</p>
+              <p class="c-proj">Degree-variance spectra for potential, geoid, gravity anomaly and ∂²g/∂r²; meridian
+                profiles at 80°E.</p>
+              <div class="tags"><span class="tag">Spherical harmonics</span><span class="tag">Geoid / gravity anomalies</span></div>
+            </div>
+          </div>
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/F_UF.jpg" data-full="assets/F_UF.png"
@@ -1801,14 +1854,13 @@
                 data-full="assets/Multi-look_Image.png" alt="Multi-look image">
             </div>
             <div class="c-body">
+              <p class="c-meta">ASE 389 · Fall 2023</p>
               <h3>Radar Systems for Earth Observation</h3>
               <p class="c-focus">SAR principles, back-projection focusing, image quality.</p>
-              <p class="c-proj">Focused SAR image reconstruction via back-projection; multi-look sharpening. <a
-                  href="#proj-sar">Project →</a></p>
+              <p class="c-proj">Focused SAR image reconstruction via back-projection; multi-look sharpening. <a href="#proj-sar">Project →</a></p>
               <div class="tags"><span class="tag">SAR</span><span class="tag">Imaging</span></div>
             </div>
           </div>
-
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/lowdiff.jpg" data-full="assets/lowdiff.png"
@@ -1819,6 +1871,7 @@
                 alt="Slope map">
             </div>
             <div class="c-body">
+              <p class="c-meta">ASE 389 · Fall 2023</p>
               <h3>3D Remote Sensing: LiDAR</h3>
               <p class="c-focus">Point-cloud processing; terrain and vegetation structure.</p>
               <p class="c-proj">Tree recognition and canopy-metrics pipeline (DTM/DSM/CHM, crown segmentation) to
@@ -1826,7 +1879,6 @@
               <div class="tags"><span class="tag">LiDAR</span><span class="tag">CloudCompare</span></div>
             </div>
           </div>
-
           <div class="course reveal">
             <div class="c-thumbs">
               <img class="zoom" loading="lazy" src="assets/thumbs/ML_geo.jpg" data-full="assets/ML_geo.png"
@@ -1836,32 +1888,12 @@
                 alt="Validation accuracy">
             </div>
             <div class="c-body">
+              <p class="c-meta">GEO 398D · Spring 2024</p>
               <h3>ML Applications in the Geosciences</h3>
               <p class="c-focus">Object-detection pipelines for EO datasets.</p>
-              <p class="c-proj">Benchmarked detection architectures for tree crowns with DeepForest as a baseline. <a
-                  href="#proj-ml">Project →</a></p>
+              <p class="c-proj">Two-person team project: benchmarked detection architectures for tree crowns with
+                DeepForest as a baseline. <a href="#proj-ml">Project →</a></p>
               <div class="tags"><span class="tag">CNN</span><span class="tag">PyTorch</span></div>
-            </div>
-          </div>
-
-          <div class="course reveal">
-            <div class="c-body">
-              <h3>Stochastic Systems, Estimation &amp; Control</h3>
-              <p class="c-focus">Random processes, estimation and stochastic control.</p>
-              <p class="c-proj">Compared EKF, UKF and the statistically linearized filter on nonlinear systems:
-                consistency, accuracy and observability under varying measurement schedules.</p>
-              <div class="tags"><span class="tag">Kalman family</span><span class="tag">SLF</span></div>
-            </div>
-          </div>
-
-          <div class="course reveal">
-            <div class="c-body">
-              <h3>Optimal Control Theory</h3>
-              <p class="c-focus">Pontryagin's maximum principle, dynamic programming, trajectory design.</p>
-              <p class="c-proj">Low-thrust transfer with indirect shooting, validated against direct transcription;
-                sensitivity to cost weighting and convergence.</p>
-              <div class="tags"><span class="tag">Indirect / direct</span><span class="tag">Trajectory
-                  optimization</span></div>
             </div>
           </div>
         </div>

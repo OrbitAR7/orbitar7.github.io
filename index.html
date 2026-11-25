@@ -1138,7 +1138,8 @@
                 methods, GNSS navigation and integrity, and attitude determination and control.</p>
               <p class="evidence"><a href="#proj-mixture">non-Gaussian orbit uncertainty</a> · <a
                   href="#proj-nrho">navigation on a lunar halo orbit</a> · <a href="#proj-lunar">lunar navigation
-                  constellation</a> · <a href="#proj-mars">Mars density
+                  constellation</a> · <a href="#proj-gnss-explain">GNSS teaching simulator</a> · <a
+                  href="#proj-mars">Mars density
                   estimation</a> · <a href="#proj-mekf">ADCS with MEKF</a> · <a
                   href="#software">37-filter Julia toolkit</a> · <a href="#software">GNSS integrity (RAIM)</a> · <a
                   href="#courses">optimal control</a>
@@ -1343,6 +1344,33 @@
           </div>
         </article>
 
+        <article class="project reveal" id="proj-gnss-explain">
+          <div>
+            <p class="p-kicker">Navigation · teaching</p>
+            <h3>GNSS Explain: a satellite navigation simulator for the classroom</h3>
+            <p>An interactive browser simulation I built as a teaching aid for the Saudi Space Agency's Space Academy
+              courses. GPS, Galileo, GLONASS and BeiDou satellites fly at positions propagated from today's CelesTrak
+              element sets, and a simulated phone in Riyadh acquires their signals and solves for position and time.
+              Between the two sits a full receiver model: link budget and C/N₀, assisted and cold-start acquisition,
+              Sagnac-corrected light time, ionosphere, troposphere, multipath and street-canyon reflections, and a
+              weighted least-squares solver with one clock per constellation. Thirteen guided chapters use the live
+              simulation, from why a receiver needs four satellites to how geometry and buildings degrade a fix.</p>
+            <div class="tags"><span class="tag">GNSS receiver model</span><span class="tag">Weighted least
+                squares</span><span class="tag">SGP4</span><span class="tag">TypeScript · CesiumJS</span></div>
+            <p class="outcome"><b>Outcome:</b> a working classroom tool that runs in any browser with no install. In
+              open sky over Riyadh it gets an assisted 3D fix in about 10 s from 35 satellites across four
+              constellations (PDOP 0.9, about 6 m horizontal at 95%), and an instructor can move the receiver into a
+              street canyon or indoors and show the fix degrade. 39 tests.
+              <a href="https://orbitar7.github.io/GNSS_Explain/" target="_blank" rel="noopener noreferrer">Try it →</a>
+              · <a href="https://github.com/OrbitAR7/GNSS_Explain" target="_blank" rel="noopener noreferrer">Code →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/gnss_explain.jpg"
+              data-full="assets/projects/gnss_explain.jpg"
+              alt="GNSS Explain: the four constellations' orbits around the Earth, the guided briefing on the left, and a simulated phone on the right showing a 3D fix in Riyadh from 35 satellites at PDOP 0.9.">
+          </div>
+        </article>
+
         <article class="project reveal" id="proj-mars">
           <div>
             <p class="p-kicker">Estimation · Mars entry &amp; aerobraking</p>
@@ -1519,6 +1547,16 @@
 
         <p class="repo-group">Navigation &amp; GNSS</p>
         <div class="repo-grid">
+          <a class="repo reveal" href="https://github.com/OrbitAR7/GNSS_Explain" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>GNSS_Explain</h3><span class="lang"><i style="background:#3178c6"></i>TypeScript</span>
+            </div>
+            <p>Browser simulator of multi-constellation GNSS positioning for teaching: live orbits, receiver link
+              budget and acquisition, error models and a weighted least-squares fix. Runs online with no install.</p>
+            <div class="tags"><span class="tag plain">GNSS</span><span class="tag plain">teaching</span><span
+                class="tag plain">CesiumJS</span></div>
+          </a>
           <a class="repo reveal" href="https://github.com/OrbitAR7/lunar-gnss-sim" target="_blank"
             rel="noopener noreferrer">
             <div class="repo-top">

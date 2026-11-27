@@ -1326,6 +1326,38 @@
           </div>
         </article>
 
+        <article class="project reveal" id="proj-liouville">
+          <div>
+            <p class="p-kicker">Estimation · uncertainty propagation · cislunar</p>
+            <h3>Why refitting a Gaussian only ever adds uncertainty, and when it matters</h3>
+            <p>A follow-up to the NRHO result above, as its own Julia package. On orbital flows that preserve phase
+              volume (Kepler, J2 and the Earth–Moon three-body problem), the entropy of the propagated uncertainty is
+              conserved. So its non-Gaussianity equals the growth of its covariance volume, and a filter that refits a
+              Gaussian can only gain volume, never give it back. The package derives and tests a leading-order
+              predictor of that non-Gaussianity from second-order state transition tensors. It also measures how much of the NRHO's
+              perilune non-Gaussianity undoes itself, and tests split-and-merge rules for Gaussian mixtures against
+              the exact posterior.</p>
+            <div class="tags"><span class="tag">Liouville / entropy</span><span class="tag">State transition
+                tensors</span><span class="tag">Gaussian mixtures</span><span class="tag">NRHO</span></div>
+            <p class="outcome"><b>Outcome:</b> for a 10 km, 10 cm/s prior the non-Gaussianity at perilune is 7.2 nats,
+              and 99.9–100% of it is gone again by apolune. A single refit at perilune locks that in for good, while a
+              refit at apolune costs 0.036 nats over three revolutions; repeated perilune refits even put 17–34% of
+              the probability on trajectories that hit the Moon. The predictor is within 10% up to 0.1 nats. Beyond
+              that the exact value follows a closed-form bound that holds for quadratic maps. My hypothesis that
+              splitting in measurement space beats the standard entropy trigger was refuted, and the write-up says so.
+              <a href="https://github.com/OrbitAR7/LiouvilleMixtures.jl" target="_blank"
+                rel="noopener noreferrer">Code and write-up →</a></p>
+          </div>
+          <div class="p-media stack">
+            <img class="zoom" loading="lazy" src="assets/thumbs/liouville_nrho_negentropy.jpg"
+              data-full="assets/projects/liouville_nrho_negentropy.png"
+              alt="Negentropy along three NRHO revolutions for five prior sizes: it spikes by four to eight orders of magnitude at every perilune and falls back by apolune; the irreversible part, dashed, grows slowly.">
+            <img class="zoom" loading="lazy" src="assets/thumbs/liouville_refit_ratchet.jpg"
+              data-full="assets/projects/liouville_refit_ratchet.png"
+              alt="Covariance volume of a Gaussian refitted on a schedule against the exact volume: refits at apolune track the exact curve, while any refit at perilune locks in tens of nats.">
+          </div>
+        </article>
+
         <article class="project reveal" id="proj-lunar">
           <div>
             <p class="p-kicker">Navigation · lunar frames &amp; constellations</p>
@@ -1621,6 +1653,16 @@
               Gaussian mixture), 869 tests, and orbit examples on maneuver detection, non-Gaussian uncertainty and
               navigation on a lunar halo orbit.</p>
             <div class="tags"><span class="tag plain">Kalman</span><span class="tag plain">particle filters</span><span
+                class="tag plain">Gaussian mixtures</span></div>
+          </a>
+          <a class="repo reveal" href="https://github.com/OrbitAR7/LiouvilleMixtures.jl" target="_blank"
+            rel="noopener noreferrer">
+            <div class="repo-top">
+              <h3>LiouvilleMixtures.jl</h3><span class="lang"><i style="background:#a270ba"></i>Julia</span>
+            </div>
+            <p>Entropy accounting for Gaussian and mixture uncertainty propagation on volume-preserving orbits: the
+              refit ratchet, reversible non-Gaussianity on the NRHO, a tensor-based predictor and its bound.</p>
+            <div class="tags"><span class="tag plain">uncertainty</span><span class="tag plain">NRHO</span><span
                 class="tag plain">Gaussian mixtures</span></div>
           </a>
           <a class="repo reveal" href="https://github.com/OrbitAR7/attitude-triad-quest-mekf" target="_blank"
